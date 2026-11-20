@@ -44,9 +44,10 @@
         }
     </script>
 
-    <!-- Estilos para ocultar cualquier banner o barra flotante inyectada automáticamente por Netlify -->
+    <!-- Estilos para ocultar cualquier banner o barra flotante inyectada automáticamente -->
     <style>
-        /* Oculta el cajón de herramientas (Netlify Drawer) y posibles banners inferiores de Netlify */
+        /* Oculta el cajón de herramientas (Netlify Drawer), banners inferiores y #nl-badge-frame */
+        iframe#nl-badge-frame,
         [data-netlify-deploy-id],
         iframe[src*="netlify"],
         div[id*="netlify-drawer"],
@@ -210,14 +211,14 @@
         });
 
         /**
-         * Eliminación automática de banners o barras inyectadas por Netlify.
+         * Eliminación automática de banners, badges o barras flotantes inyectadas.
          * Utiliza un MutationObserver para detectar y remover del DOM cualquier
-         * iframe o contenedor que Netlify agregue dinámicamente al cargar la página.
+         * iframe o contenedor que se agregue dinámicamente al cargar la página.
          */
         (function eliminarBannerNetlify() {
             const limpiarElementosNetlify = () => {
-                // Busca elementos relacionados con el drawer o banners de Netlify
                 const selectores = [
+                    'iframe#nl-badge-frame',
                     '[data-netlify-deploy-id]',
                     'iframe[src*="netlify"]',
                     'div[id*="netlify"]',
@@ -229,7 +230,7 @@
             // Ejecuta una limpieza inicial al cargar el script
             limpiarElementosNetlify();
 
-            // Observa cambios en el cuerpo del documento por si Netlify inyecta el banner de forma asíncrona
+            // Observa cambios en el cuerpo del documento por si se inyecta de forma asíncrona
             const observador = new MutationObserver(() => limpiarElementosNetlify());
             observador.observe(document.body, { childList: true, subtree: true });
         })();

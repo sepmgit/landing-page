@@ -14,12 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome para iconos minimalistas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        body {
-            display: none !important;
-        }
-    </style>
     
     <!-- Configuración personalizada de Tailwind para tonos Vinotinto -->
     <script>
@@ -49,6 +43,20 @@
             }
         }
     </script>
+
+    <!-- Estilos para ocultar cualquier banner o barra flotante inyectada automáticamente por Netlify -->
+    <style>
+        /* Oculta el cajón de herramientas (Netlify Drawer) y posibles banners inferiores de Netlify */
+        [data-netlify-deploy-id],
+        iframe[src*="netlify"],
+        div[id*="netlify-drawer"],
+        div[class*="netlify-drawer"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+    </style>
 </head>
 <body class="bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-vinotinto-800 selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden relative">
 
@@ -200,6 +208,31 @@
             mostrarToast(`¡Mensaje enviado, ${nombre}!`);
             this.reset();
         });
+
+        /**
+         * Eliminación automática de banners o barras inyectadas por Netlify.
+         * Utiliza un MutationObserver para detectar y remover del DOM cualquier
+         * iframe o contenedor que Netlify agregue dinámicamente al cargar la página.
+         */
+        (function eliminarBannerNetlify() {
+            const limpiarElementosNetlify = () => {
+                // Busca elementos relacionados con el drawer o banners de Netlify
+                const selectores = [
+                    '[data-netlify-deploy-id]',
+                    'iframe[src*="netlify"]',
+                    'div[id*="netlify"]',
+                    'div[class*="netlify"]'
+                ];
+                document.querySelectorAll(selectores.join(',')).forEach(el => el.remove());
+            };
+
+            // Ejecuta una limpieza inicial al cargar el script
+            limpiarElementosNetlify();
+
+            // Observa cambios en el cuerpo del documento por si Netlify inyecta el banner de forma asíncrona
+            const observador = new MutationObserver(() => limpiarElementosNetlify());
+            observador.observe(document.body, { childList: true, subtree: true });
+        })();
     </script>
 </body>
 </html>

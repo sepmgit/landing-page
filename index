@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergio Pantoja | Desarrollador Web HTML5 & CSS3</title>
+    <!-- Favicon SVG Personalizado en Color Vinotinto -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23380513'/%3E%3Cpath d='M32 8L52 19.5V44.5L32 56L12 44.5V19.5L32 8Z' fill='none' stroke='%23df4a70' stroke-width='3'/%3E%3Cpath d='M24 26L18 32L24 38M40 26L46 32L40 38M35 23L29 41' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos minimalistas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Configuración personalizada de Tailwind para tonos Vinotinto -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        vinotinto: {
+                            300: '#f4a9ba',
+                            400: '#ec7994',
+                            500: '#df4a70',
+                            600: '#c82955',
+                            700: '#a81d44',
+                            800: '#72132e', // Vinotinto clásico profundo
+                            900: '#5a0e24', // Vinotinto oscuro elegante
+                            950: '#380513', // Fondo ultra oscuro con matiz vinotinto
+                        }
+                    },
+                    boxShadow: {
+                        'vinotinto': '0 10px 35px -10px rgba(114, 19, 46, 0.55)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-vinotinto-800 selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden relative">
+
+    <!-- Luz ambiental sutil en color Vinotinto -->
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-vinotinto-800/20 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <!-- Barra Superior Minimalista -->
+    <header class="w-full max-w-6xl mx-auto px-6 py-7 flex items-center justify-between relative z-10">
+        <a href="#" aria-label="Inicio" class="group flex items-center focus:outline-none">
+            <!-- Logo SVG Personalizado Sergio Pantoja -->
+            <div class="relative w-11 h-11 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                <svg viewBox="0 0 64 64" class="w-full h-full drop-shadow-[0_4px_14px_rgba(200,41,85,0.45)]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="vinoGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#df4a70"/>
+                            <stop offset="50%" stop-color="#72132e"/>
+                            <stop offset="100%" stop-color="#380513"/>
+                        </linearGradient>
+                        <linearGradient id="strokeGrad" x1="10" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#f4a9ba"/>
+                            <stop offset="100%" stop-color="#a81d44"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Escudo Hexagonal de Ingeniería -->
+                    <path d="M32 5L55 18.2V45.8L32 59L9 45.8V18.2L32 5Z" fill="url(#vinoGrad)" stroke="url(#strokeGrad)" stroke-width="2.2"/>
+                    <!-- Monograma 'S' Geométrico + Corchetes de Código -->
+                    <path d="M21 25L15 32L21 39" stroke="#f4a9ba" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M43 25L49 32L43 39" stroke="#f4a9ba" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M36.5 23.5H28.5C26.567 23.5 25 25.067 25 27C25 28.933 26.567 30.5 28.5 30.5H35.5C37.433 30.5 39 32.067 39 34C39 35.933 37.433 37.5 35.5 37.5H27.5" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Punto de acento superior -->
+                    <circle cx="32" cy="14" r="1.8" fill="#f4a9ba"/>
+                </svg>
+            </div>
+        </a>
+
+        <div class="flex items-center gap-4 text-neutral-400 text-sm">
+            <button onclick="abrirContacto()" class="px-4 py-2 rounded-xl bg-vinotinto-900/60 hover:bg-vinotinto-800 border border-vinotinto-700/50 text-vinotinto-200 hover:text-white text-xs font-medium transition-all">
+                Contactar
+            </button>
+        </div>
+    </header>
+
+    <!-- Único Hero Central Minimalista -->
+    <main class="flex-1 flex items-center justify-center px-6 py-10 relative z-10">
+        <div class="max-w-3xl w-full text-center space-y-8">
+            
+            <!-- Etiqueta de Disponibilidad -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-vinotinto-950/90 border border-vinotinto-800/60 text-vinotinto-300 text-xs font-mono">
+                <span class="w-1.5 h-1.5 rounded-full bg-vinotinto-400 animate-pulse"></span>
+                Programador &amp; Desarrollador Web
+            </div>
+
+            <!-- Título Principal -->
+            <div class="space-y-4">
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white">
+                    Sergio <span class="text-transparent bg-clip-text bg-gradient-to-r from-vinotinto-400 via-vinotinto-500 to-rose-300">Pantoja</span>
+                </h1>
+                <p class="text-base sm:text-xl text-neutral-400 max-w-xl mx-auto font-light leading-relaxed">
+                    Construyo sitios web limpios, rápidos y responsivos con arquitectura semántica en <span class="text-neutral-200 font-mono text-sm sm:text-base">HTML5</span> y diseño moderno en <span class="text-neutral-200 font-mono text-sm sm:text-base">CSS3</span>.
+                </p>
+            </div>
+
+            <!-- Píldoras de Especialidad Minimalistas -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 text-xs font-mono text-vinotinto-300">
+                <span class="px-3.5 py-1.5 rounded-xl bg-neutral-900/90 border border-neutral-800 flex items-center gap-2">
+                    <i class="fa-brands fa-html5 text-vinotinto-400"></i> HTML5 Semántico
+                </span>
+                <span class="px-3.5 py-1.5 rounded-xl bg-neutral-900/90 border border-neutral-800 flex items-center gap-2">
+                    <i class="fa-brands fa-css3-alt text-vinotinto-400"></i> CSS3 / Grid &amp; Flexbox
+                </span>
+                <span class="px-3.5 py-1.5 rounded-xl bg-neutral-900/90 border border-neutral-800 flex items-center gap-2">
+                    <i class="fa-solid fa-mobile-screen text-vinotinto-400"></i> Mobile-First
+                </span>
+            </div>
+
+            <!-- Llamado a la Acción Principal -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="abrirContacto()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-vinotinto-800 hover:bg-vinotinto-700 text-white text-sm font-semibold shadow-vinotinto transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <span>Iniciar un Proyecto</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Pie de Página Minimalista -->
+    <footer class="w-full max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 relative z-10">
+        <p>&copy; 2026 Sergio Pantoja — Ingeniería &amp; Desarrollo Web</p>
+        <div class="flex items-center gap-5 text-neutral-400">
+            <a href="https://github.com/sepmgit" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-vinotinto-400 transition-colors"><i class="fa-brands fa-github text-base"></i></a>
+            <a href="#linkedin" onclick="mostrarToast('LinkedIn: Sergio Pantoja')" aria-label="LinkedIn" class="hover:text-vinotinto-400 transition-colors"><i class="fa-brands fa-linkedin-in text-base"></i></a>
+            <a href="#contacto" onclick="abrirContacto()" aria-label="Mensaje directo" class="hover:text-vinotinto-400 transition-colors"><i class="fa-regular fa-envelope text-base"></i></a>
+        </div>
+    </footer>
+
+    <!-- Modal Minimalista de Contacto Rápido -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="bg-neutral-900 border border-vinotinto-800/60 rounded-3xl max-w-md w-full p-7 shadow-vinotinto space-y-5 relative">
+            <button onclick="cerrarContacto()" aria-label="Cerrar" class="absolute top-5 right-5 w-8 h-8 rounded-xl bg-neutral-800 hover:bg-vinotinto-800 text-neutral-400 hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div>
+                <span class="text-[11px] font-mono text-vinotinto-400 uppercase tracking-wider">Contacto Directo</span>
+                <h2 class="text-xl font-bold text-white mt-1">Escribe a Sergio Pantoja</h2>
+            </div>
+            <form id="quick-form" class="space-y-3.5">
+                <input type="text" id="nombre" required placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 focus:border-vinotinto-600 focus:outline-none text-sm text-white placeholder-neutral-600">
+                <input type="email" id="email" required placeholder="Tu correo electrónico" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 focus:border-vinotinto-600 focus:outline-none text-sm text-white placeholder-neutral-600">
+                <textarea id="mensaje" rows="3" required placeholder="¿En qué proyecto web puedo ayudarte?" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 focus:border-vinotinto-600 focus:outline-none text-sm text-white placeholder-neutral-600 resize-none"></textarea>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-vinotinto-800 hover:bg-vinotinto-700 text-white text-sm font-semibold transition-colors">
+                    Enviar Mensaje
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notificación Flotante (Toast) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-2xl bg-vinotinto-900 border border-vinotinto-600 text-white text-xs font-medium shadow-vinotinto">
+        <i class="fa-solid fa-circle-check text-vinotinto-300"></i>
+        <span id="toast-msg">Listo</span>
+    </div>
+
+    <script>
+        function mostrarToast(texto) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = texto;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        function abrirContacto() {
+            const modal = document.getElementById('contact-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function cerrarContacto() {
+            const modal = document.getElementById('contact-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('contact-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'contact-modal') cerrarContacto();
+        });
+
+        document.getElementById('quick-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value.trim();
+            cerrarContacto();
+            mostrarToast(`¡Mensaje enviado, ${nombre}!`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
